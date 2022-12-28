@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import viewClasses.Calculator;
 
 
 @Controller
@@ -32,38 +33,23 @@ public class FirstController {
 
 
     @GetMapping("/calculator")
-    public String getCalculator(@RequestParam(value = "a", required = false) int a,
-                                @RequestParam(value = "b", required = false) int b,
+    public String getCalculator(@RequestParam(value = "a", required = false) String a,
+                                @RequestParam(value = "b", required = false) String b,
                                 @RequestParam(value = "action", required = false) String action,
                                 Model model) {
 
-        double res = Double.MIN_VALUE;
-
-        switch (action) {
-            case "mult":
-                res = a * b;
-                break;
-            case "div":
-                res = a / (double) b;
-                break;
-            case "sub":
-                res = a - b;
-                break;
-            case "add":
-                res = a + b;
-                break;
-        }
-
-        if (res == Double.MIN_VALUE) {
+        if (a.equals("")  || b.equals("") || action.equals("")) {
             model.addAttribute("res", "Calculation result = unknown");
         } else {
+            Calculator c = new Calculator(action, Integer.parseInt(a), Integer.parseInt(b));
+            var res = c.getRes();
             model.addAttribute("res", "Calculation result = " + res);
         }
-
 
         String page = "second/calculator-page";
         return page;
     }
+
 
 }
 
