@@ -1,0 +1,43 @@
+header h1 {
+    font-size: 70px;
+    font-weight: 400;
+    background-image: linear-gradient(to left, #FFFFE0, #8B0000);
+    color: transparent;
+    text-align: center;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+a {
+    background-color: red;
+    box-shadow: 0 5px 0 darkred;
+    color: white;
+    padding: 1em 1.5em;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover {
+    background-color: #ce0606;
+}
+
+a:active {
+    box-shadow: none;
+    top: 5px;
+}
+
+/* Non-Demo Styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200vh;
+}

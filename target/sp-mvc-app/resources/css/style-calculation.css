@@ -1,0 +1,33 @@
+H1 {
+    overflow: hidden;
+    text-shadow:
+            0 0 red,
+            0 0 darkred,
+            0 0 dimgray;
+    color: transparent;
+    font-size: 50px;
+    transition: all 1s;
+    text-align: center;
+    height: 20vh;
+}
+
+
+p {
+    overflow: hidden;
+    text-shadow:
+            0 0 tomato,
+            0 0 brown,
+            0 0 rosybrown;
+    color: transparent;
+    font-size: 35px;
+    transition: all 1s;
+    text-align: center;
+    height: 20vh;
+}
+
+p:hover {
+    text-shadow:
+            -400px 0 red,
+            400px 0 darkred,
+            0 0 coral;
+}
