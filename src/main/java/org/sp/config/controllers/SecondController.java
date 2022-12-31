@@ -2,13 +2,14 @@ package org.sp.config.controllers;
 
 import org.sp.dao.PersonDAO;
 
+import org.sp.models.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
+@RequestMapping("/people")
 public class SecondController {
 
     private final PersonDAO personDAO;
@@ -18,15 +19,27 @@ public class SecondController {
     }
 
 
-    @GetMapping("/people")
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("people", personDAO.index());
-        return "people/index";
+        return "people/list-page";
     }
 
-    @GetMapping("/people/{id}")
+    @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.show(id));
-        return "people/show";
+        return "people/show-page";
+    }
+
+    @GetMapping("/new")
+    public String newPerson(@ModelAttribute("person") Person person) {
+        return "people/new";
+    }
+
+
+    @PostMapping()
+    public String create(@ModelAttribute("person") Person person) {
+        PersonDAO.addPerson(person);
+        return "redirect:/people";
     }
 }

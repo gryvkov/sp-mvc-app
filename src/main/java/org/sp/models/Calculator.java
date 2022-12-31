@@ -24,7 +24,7 @@ public class Calculator {
         }
     }
 
-    public double getRes() {z
+    public double getRes() {
         return res;
     }
 }
