@@ -1,4 +1,4 @@
-package viewClasses;
+package org.sp.models;
 
 public class Calculator {
 
@@ -24,7 +24,7 @@ public class Calculator {
         }
     }
 
-    public double getRes() {
+    public double getRes() {z
         return res;
     }
 }

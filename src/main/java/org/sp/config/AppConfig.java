@@ -1,5 +1,6 @@
 package org.sp.config;
 
+import org.sp.dao.PersonDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @ComponentScan
-@Configuration("org.sp.config")
+@Configuration("org.sp")
 @EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
@@ -27,6 +28,7 @@ public class AppConfig implements WebMvcConfigurer {
     public AppConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
+
 
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
@@ -43,6 +45,12 @@ public class AppConfig implements WebMvcConfigurer {
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
+    }
+
+    @Bean
+    public PersonDAO personDAO() {
+        PersonDAO personDAO = new PersonDAO();
+        return personDAO;
     }
 
     @Override

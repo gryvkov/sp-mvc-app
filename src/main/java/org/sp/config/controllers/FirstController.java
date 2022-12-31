@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import viewClasses.Calculator;
+import org.sp.models.Calculator;
 
 
 @Controller
@@ -21,13 +21,14 @@ public class FirstController {
 
     @GetMapping("/leave")
     public String sayGoodbye() {
+
         String page = "first/leave-page";
         return page;
     }
 
     @GetMapping("/story")
     public String tellStory() {
-        String page = "second/story-page";
+        String page = "first/story-page";
         return page;
     }
 
@@ -38,7 +39,7 @@ public class FirstController {
                                 @RequestParam(value = "action", required = false) String action,
                                 Model model) {
 
-        if (a.equals("")  || b.equals("") || action.equals("")) {
+        if (a.equals("") || b.equals("") || action.equals("")) {
             model.addAttribute("res", "Calculation result = unknown");
         } else {
             Calculator c = new Calculator(action, Integer.parseInt(a), Integer.parseInt(b));
@@ -46,7 +47,7 @@ public class FirstController {
             model.addAttribute("res", "Calculation result = " + res);
         }
 
-        String page = "second/calculator-page";
+        String page = "first/calculator-page";
         return page;
     }
 
