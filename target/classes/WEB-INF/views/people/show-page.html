@@ -13,5 +13,11 @@
 <p th:text="${person.getAge()}">VALUE</p>
 <p th:text="${person.getHeight()}">VALUE</p>
 <p th:text="${person.getWeight()}">VALUE</p>
+
+<a th:href="@{/people/edit/{id}(id=${person.getId()})}">Edit</a>
+<br/>
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
+    <input type="submit" value="Delete"/>
+</form>
 </body>
 </html>

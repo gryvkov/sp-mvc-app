@@ -3,13 +3,15 @@ package org.sp.dao;
 import org.sp.models.Person;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PropertyPermission;
 
 @Component
 public class PersonDAO {
     private static int people_count;
-    private static List<Person> people;
+    private List<Person> people;
 
     {
         people = new ArrayList<>();
@@ -25,9 +27,13 @@ public class PersonDAO {
                 55, 175, 85));
     }
 
-    public static void addPerson(Person person) {
+    public void addPerson(Person person) {
         person.setId(people_count++);
         people.add(person);
+    }
+
+    public void update(int id, Person updatedPerson) {
+            people.set(id, updatedPerson);
     }
 
     public List<Person> index() {
@@ -36,5 +42,9 @@ public class PersonDAO {
 
     public Person show(int id) {
         return people.stream().filter(person -> person.getId() == id).findAny().orElse(null);
+    }
+
+    public void delete(int id) {
+        people.removeIf(p -> p.getId() == id);
     }
 }

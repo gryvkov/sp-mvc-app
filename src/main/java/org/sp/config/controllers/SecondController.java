@@ -33,13 +33,32 @@ public class SecondController {
 
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
-        return "people/new";
+        return "people/creation-page";
     }
 
 
     @PostMapping()
     public String create(@ModelAttribute("person") Person person) {
-        PersonDAO.addPerson(person);
+        personDAO.addPerson(person);
+        return "redirect:/people";
+    }
+
+
+    @GetMapping("edit/{id}")
+    public String editPerson(@PathVariable("id") int id, Model model) {
+        model.addAttribute("person", personDAO.show(id));
+        return "people/edit-page";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("person") Person person, @PathVariable("id") int id){
+        personDAO.update(id, person);
+        return "redirect:/people";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id){
+        personDAO.delete(id);
         return "redirect:/people";
     }
 }
